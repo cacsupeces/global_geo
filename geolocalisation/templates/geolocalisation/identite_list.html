@@ -1,0 +1,32 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+
+{% block title %}
+{{ block.super }} - Identite
+{% endblock %}
+
+{% block create_button %}
+  {% if perms.geolocalisation.add_identite %}
+    <a href="{% url 'identite_create' %}" class="button button-primary">Create New Identite</a>
+  {% endif %}
+{% endblock %}
+
+{% block geo_content %}
+  <h2>Identite List</h2>
+  {% if perms.geolocalisation.add_identite %}
+    <div class="mobile">
+      <a href="{% url 'identite_create' %}" class="button button-primary">Create New Identity</a>
+    </div>
+  {% endif %}
+  <ul>
+    {% for identite in identite_list %}
+      <li>
+        <a href="{{ identite.get_absolute_url }}">{{ identite.nom }}</a>
+        
+      </li>
+    {% empty %}
+      <li><em>No Identities Available</em></li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+

@@ -1,0 +1,11 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+{% load display_form %}
+
+
+{% block title %}
+	{{ block.super }} - Update Identity
+{% endblock %}
+
+{% block content %}
+	{% form identite.get_update_url 'Update Identite' %}
+{% endblock %}

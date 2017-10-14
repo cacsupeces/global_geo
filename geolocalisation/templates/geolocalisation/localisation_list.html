@@ -1,0 +1,29 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+
+{% block title %}
+	{{ block.super }} - Localisation List
+{% endblock %}
+
+{% block create_button %}
+  {% if perms.geolocalisation.add_localisation %}
+    <a href="{% url 'localisation_create' %}" class="button button-primary">Create New Localisation</a>
+  {% endif %}
+{% endblock %}
+
+{% block geo_content %}
+  <h2>Localisation List</h2>
+  {% if perms.geolocalisation.add_localisation %}
+    <div class="mobile">
+      <a href="{% url 'localisation_create' %}" class="button button-primary">Create New Localisation</a>
+    </div>
+  {% endif %}
+  <ul>
+    {% for localisation in localisation_list %}
+      <li>
+        <a href="{{ localisation.get_absolute_url }}">{{ localisation.cimetiere }}</a>
+        
+      </li>
+    {% empty %}<li><em>No Localisations Available</em></li>{% endfor %}
+  </ul>
+
+{% endblock %}

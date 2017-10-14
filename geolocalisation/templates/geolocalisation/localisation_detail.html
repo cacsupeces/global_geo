@@ -1,0 +1,25 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+{%	load	obfuscate_email	%}
+
+
+{% block title %}
+	{{ block.super }} - {{ localisation.cimetiere|title }}
+{% endblock %}
+
+
+{% block content %}
+<dl>
+	
+      <dd>{{ localisation.contact|obfuscate }}</dd>
+      <dt>Feeds</dt>
+      <dd><a href="{{ localisation.get_feed_atom_url }}">Atom</a></dd>
+      <dd><a href="{{ localisation.get_feed_rss_url }}">RSS</a></dd>
+</dl>
+
+<ul>
+	<li><a href="{{ localisation.get_update_url }}">Localiser {{ localisation.cimetiere|title }}</a></li>
+	<li><a href="{{ localisation.get_delete_url }}">Delete Localisation</a></li>
+	
+</ul>
+
+{% endblock %}

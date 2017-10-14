@@ -1,0 +1,20 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+{% load obfuscate_email %}
+
+{% block title %}
+	{{ block.super }} - {{ identite.nom|title }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ identite.nom|title }}</h2>
+<dl>
+
+      <dd>{{ identite.contact|obfuscate }}</dd>
+	
+</dl>
+<ul>
+	<li><a href="{{ identite.get_update_url }}">Edit Identity</a></li>
+	<li><a href="{{ identite.get_delete_url }}">Delete Identity</a></li>
+	
+</ul>
+{% endblock %}

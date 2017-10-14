@@ -1,0 +1,11 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+{% load display_form %}
+
+{% block title %}
+	{{ block.super }} - Create Identity
+{% endblock %}
+
+{% block content %}
+	{% url 'identite_create' as form_url %}
+	{% form form_url 'Create Identity' %}
+{% endblock %}

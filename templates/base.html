@@ -1,0 +1,100 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}
+        Géolocalisation Globale
+      {% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if IE]><script
+      src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+    </script><![endif]-->
+    <link rel="stylesheet" type="text/css"
+      href="{% static 'site/normalize.css' %}">
+    <link rel="stylesheet" type="text/css"
+      href="{% static 'site/skeleton.css' %}">
+    <link rel="stylesheet" type="text/css"
+      href="{% static 'site/style.css' %}">
+     
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+
+     <div class="container">
+      <div class="status row">
+        <div class="offset-by-eight four columns">
+          <ul class="inline">
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'dj-auth:profile' %}">
+                View Profile</a></li>
+              <li><a href="{% url 'dj-auth:logout' %}?next={{ request.path }}">
+                Log Out</a></li>
+            {% else %}
+              <li><a href="{% url 'dj-auth:create' %}">
+                Register</a></li>
+              <li><a href="{% url 'dj-auth:login' %}?next={{ request.path }}">
+                Log In</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <header class="row">
+        <div class="offset-by-one ten columns">
+          <h2 class="logo">Django Framework</h2>
+        </div>
+      </header>
+      <nav>
+        <ul>
+			
+          <li><a href="{% url 'localisation_list' %}">Localisation</a></li>
+          <li><a href="{% url 'identite_list' %}">Identités</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="{% url 'about_site' %}">A propos</a></li>
+        </ul>
+      </nav>
+       {% if messages %}
+        <div class="row">
+          <div class="twelve columns">
+            <ul class="messages">
+              {% for message in messages %}
+                {% if message.tags %}
+                  <li class="{{ message.tags }}">
+                {% else %}
+                  <li>
+                {% endif %}
+                {{ message }}</li>
+              {% endfor %}
+			</ul>
+		</div>
+	</div>
+      {% endif %}
+      <main>
+        {% block content %}
+          This is default content!
+        {% endblock %}
+      </main>
+    </div><!-- container -->
+
+    <footer>
+      <p>
+        &copy; 2017
+        <a href="https://bah.com/">
+          Bah Ibrahima</a>
+      </p>
+      <p>
+        Created for <a href="https://casup-eces.com/">Casup ECES</a>
+      </p>
+       <ul>
+        <li><a href="{% url 'sitemap' %}">Sitemap</a></li>
+      </ul>
+    </footer>
+
+  </body>
+
+</html>

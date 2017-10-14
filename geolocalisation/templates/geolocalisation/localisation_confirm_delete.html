@@ -1,0 +1,10 @@
+{% extends parent_template|default:"geolocalisation/base_geolocalisation.html" %}
+{% load display_form %}
+
+{% block title %}
+	{{ block.super }} - Delete Localisation
+{% endblock %}
+
+{% block content %}
+	{% delete_form localisation.get_delete_url %}
+{% endblock %}
