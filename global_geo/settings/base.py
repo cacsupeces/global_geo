@@ -170,3 +170,34 @@ EMAIL_SUBJECT_PREFIX	=	'[Localisation Identite]	'
 MANAGERS	=	(('Us',	'casup@deces.com'),)
 
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'), )
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'remove_migration_sql': {
+            '()': ManagementFilter,
+        },
+    },
+    'handlers': {
+        'console': {
+            'filters': ['remove_migration_sql'],
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': verbose,
+            'datefmt': "%Y-%b-%d %H:%M:%S"
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'formatter': 'verbose'
+        },
+    },
+}
