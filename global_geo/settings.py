@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import sys
-
-from django.core.urlresolvers import reverse_lazy
-
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,19 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '49$8993!fae5wf-1^!sam*-2h$#6kv)di$c0tv(el-q^pgy-_@'
 SITE_ID = 1
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-# Logging
-# https://docs.djangoproject.com/en/1.8/topics/logging/
-
+STATIC_URL	=	'/static/'
+STATICFILES_DIRS	=	(os.path.join(BASE_DIR,	"static"),)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -68,19 +52,17 @@ INSTALLED_APPS = (
     'core',
 )
 
-
+from django.core.urlresolvers import reverse_lazy
 
 LOGIN_REDIRECT_URL	=	reverse_lazy('localisation_list')
 LOGIN_URL	=	reverse_lazy('dj-auth:login')
 LOGOUT_URL	=	reverse_lazy('dj-auth:logout')
 
 MIDDLEWARE_CLASSES = (
-	'debug_toolbar.middleware.DebugToolbarMiddleware',
 	'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -130,8 +112,12 @@ AUTH_USER_MODEL = 'user.User'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'global_geo_db',
+        'USER': 'global_geo_user',
+        'PASSWORD': 'globalgeouser2017',
+        'HOST': 'localhost',
+        'PORT':'',
         
     }
 }
@@ -170,34 +156,3 @@ EMAIL_SUBJECT_PREFIX	=	'[Localisation Identite]	'
 MANAGERS	=	(('Us',	'casup@deces.com'),)
 
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'), )
-
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'remove_migration_sql': {
-            '()': ManagementFilter,
-        },
-    },
-    'handlers': {
-        'console': {
-            'filters': ['remove_migration_sql'],
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-        },
-    },
-    'formatters': {
-        'verbose': {
-            'format': verbose,
-            'datefmt': "%Y-%b-%d %H:%M:%S"
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'formatter': 'verbose'
-        },
-    },
-}
