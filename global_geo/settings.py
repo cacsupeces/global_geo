@@ -47,7 +47,6 @@ INSTALLED_APPS = (
     'django_markdown',
     'django_countries',
     'geolocalisation',
-    'django_static_jquery',
     'contact',
     'core',
 )
@@ -128,7 +127,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Brazzaville'
 
 USE_I18N = True
 
