@@ -110,15 +110,10 @@ AUTH_USER_MODEL = 'user.User'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'global_geo_db',
-        'USER': 'global_geo_user',
-        'PASSWORD': 'globalgeouser2017',
-        'HOST': 'localhost',
-        'PORT':'',
-        
-    }
+	'default': {
+	'ENGINE': 'django.db.backends.sqlite3',
+	'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+  }
 }
 
 
@@ -148,10 +143,6 @@ GEOPOSITION_MAP_OPTIONS = {
     'minZoom': 3,
     'maxZoom': 100,
 }
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
-SERVER_EMAIL	=	'contact@eces.com'
-DEFAULT_FROM_EMAIL	=	'no-reply@deces.com'
-EMAIL_SUBJECT_PREFIX	=	'[Localisation Identite]	'
-MANAGERS	=	(('Us',	'casup@deces.com'),)
+
 
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'), )
