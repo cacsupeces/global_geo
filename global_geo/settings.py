@@ -135,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyArZXCuRpYea7VDOw44PfkRTK0UjhAqCFQ'
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'the Google API KEY'
 GEOPOSITION_MARKER_OPTIONS = {
          'cursor': 'move'
      }
